@@ -147,7 +147,7 @@ button[aria-label="Apps"] {
 
 .positionLayer__08434 .drawerSizingWrapper__08434 {
   position: absolute;
-  top: 50vh;
+  top: 5vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   width: 90vw !important;
