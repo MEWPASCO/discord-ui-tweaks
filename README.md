@@ -100,6 +100,28 @@ Before:\
 After:\
 ![image](https://github.com/user-attachments/assets/38a11f30-fff3-4751-9b0a-e78cac5357a8)
 
+
+### Bordered Embeds | Made by [@NSPC911](https://github.com/NSPC911)
+Before:\
+![image](https://github.com/user-attachments/assets/f5bd39a1-12ef-408a-ae8d-717955ccbaea)
+
+After:\
+![image](https://github.com/user-attachments/assets/38a11f30-fff3-4751-9b0a-e78cac5357a8)
+
+```
+/* Bordered Embeds Variables */
+:root {
+  /* Border width for the embeds */
+  --wh-border-width: 4px;
+  /* Background opacity. The higher it is, the more of the border color seeps through */
+  --wh-background-opacity: 0%;
+  /* Default background color. Relative color is used for those who use transparent themes */
+  --wh-default-background: hsl(from var(--background-surface-high) h s l / 100%);
+  /* Whether to keep the Suppress Embed button shown, or hide when not hovered on */
+  --wh-always-show-suppress-embed-button: 0;
+}
+```
+
 # Installing it to your Discord
 
 Use [Vencord](https://github.com/Vendicated/Vencord) or an equivalent client mod that allows you to install themes.

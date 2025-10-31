@@ -153,3 +153,74 @@ button[aria-label="Apps"] {
   width: 90vw !important;
   height: 90vh;
 }
+
+/* === Bordered Embeds (by NSPC911) === */
+:root {
+  --wh-border-width: 4px;
+  --wh-background-opacity: 0%;
+  --wh-default-background: hsl(
+    from var(--background-surface-high) h s l / 100%
+  );
+  --wh-always-show-suppress-embed-button: 0;
+}
+
+.embedFull__623de {
+  overflow: hidden;
+  border-left-width: 0px !important;
+  padding-left: 4px;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-right: none !important;
+  .embedSuppressButton__623de {
+    /* fix for it not showing up */
+    opacity: calc(1 * var(--wh-always-show-suppress-embed-button)) !important;
+    top: var(--wh-border-width);
+    right: var(--wh-border-width);
+    z-index: 10;
+    color: white;
+  }
+  &::before {
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    border: inherit;
+    border-left-width: 100vw;
+    box-sizing: border-box !important;
+    z-index: 1;
+    border-radius: 0px 8px 8px 0px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background: hsl(
+      from var(--background-surface-high) h s l /
+        calc(100% - var(--wh-background-opacity))
+    );
+    border-radius: 8px;
+    top: var(--wh-border-width);
+    left: var(--wh-border-width);
+    right: var(--wh-border-width);
+    bottom: var(--wh-border-width);
+    z-index: 2;
+  }
+
+  .gridContainer__623de {
+    z-index: 3;
+  }
+}
+/* Fix for components v2 */
+.withAccentColor__60fa3::before {
+  display: none;
+}
+.withAccentColor__60fa3 {
+  background: color-mix(
+    in oklch,
+    hsl(from var(--background-surface-high) h s l / 100%),
+    var(--__accent-color) var(--wh-background-opacity)
+  );
+  border: 4px solid var(--__accent-color);
+}
