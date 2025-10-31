@@ -103,10 +103,10 @@ After:\
 
 ### Bordered Embeds | Made by [@NSPC911](https://github.com/NSPC911)
 Before:\
-![image](https://github.com/user-attachments/assets/f5bd39a1-12ef-408a-ae8d-717955ccbaea)
+![image](https://github.com/user-attachments/assets/9ea7a4eb-5a80-4d9e-95ef-9edaf0b567e6)
 
 After:\
-![image](https://github.com/user-attachments/assets/38a11f30-fff3-4751-9b0a-e78cac5357a8)
+![image](https://github.com/user-attachments/assets/c6701600-4efe-4277-9bc7-7d575f3d12a9)
 
 ```
 /* Bordered Embeds Variables */
