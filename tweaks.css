@@ -1,7 +1,7 @@
 /**
  * @name Discord Ui Tweaks
  * @author Wolfÿ
- * @version 1.0.1-Alpha
+ * @version 1.0.2
  * @description Just a collection of tweaks I created or which I collected that were made by others (I try to mention them in the repo!) that make Discord a little more enjoyable
  * @invite avia
  * @source https://github.com/MEWPASCO/rainbowglow-avatars
@@ -53,7 +53,7 @@ span[class*="botTag"]:not([class*="botTagAi"], [class*="botTagCozy"], [class*="b
 }
 
 /* === Revert User Area Panel Spacing (by Obsidianninja11) === */
-.visual-refresh section.panels_c48ade {
+.visual-refresh section.panels__5e434 {
   left: calc(var(--custom-guild-list-width) + var(--space-xs));
   width: calc(100% - var(--custom-guild-list-width) - var(--space-xs) * 2);
   box-sizing: content-box;
@@ -61,10 +61,10 @@ span[class*="botTag"]:not([class*="botTagAi"], [class*="botTagCozy"], [class*="b
 .visual-refresh .actionButtons_e131a9 button {
   padding: 0;
 }
-nav.guilds_c48ade {
+nav.guilds__5e434 {
   margin-bottom: 0;
 }
-.sidebar_c48ade::after {
+.sidebar__5e434::after {
   display: none;
 }
 
@@ -99,7 +99,7 @@ form > div.focusLock__49fc1 > div.rootWithShadow__49fc1 {
 .errorMessage_b717a1 {
   color: var(--text-danger);
 }
-.input__0f084.error__0f084:focus {
+.input__0ed4f.error__0ed4f:focus {
   color: var(--text-normal);
 }
 
@@ -132,7 +132,7 @@ button[aria-label="Apps"] {
 }
 
 /* === Fullscreen emoji/sticker/gif modal === */
-.layerContainer_da8173 .positionLayer__08434 {
+.layerContainer__59d0d .positionLayer__08434 {
   position: fixed;
   top: 0;
   left: 0;
@@ -147,7 +147,7 @@ button[aria-label="Apps"] {
 
 .positionLayer__08434 .drawerSizingWrapper__08434 {
   position: absolute;
-  top: 5vh;
+  top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   width: 90vw !important;
