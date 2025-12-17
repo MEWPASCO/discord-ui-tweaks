@@ -9,33 +9,33 @@
  */
 
 /* === Collapse Icon Left (by sakgoyal) === */
-.containerDefault__29444 > div {
+._29444ba32c7fbeab-containerDefault > div {
   padding-left: 0.5em;
 }
-.containerDefault__29444 > div > div {
+._29444ba32c7fbeab-containerDefault > div > div {
   display: flex;
   justify-content: start !important;
   flex-direction: row-reverse !important;
 }
 
 /* === Remove Profile Reactions (by LuSaffi) === */
-.avatarPopover__2d0ab,
-.statusPopover__2d0ab,
-.activityPopover__2d0ab {
+._2d0abf0638bcaa3f-avatarPopover,
+._2d0abf0638bcaa3f-statusPopover,
+._2d0abf0638bcaa3f-activityPopover {
   display: none;
 }
 
 /* === Round Guild Icons in Folders (by NSPC911) === */
-.icon_f34534.folderPreviewGuildIcon__48112 {
+.f34534e8a5d3ca64-icon._48112cbe77dc5022-folderPreviewGuildIcon {
   border-radius: 50% !important;
 }
 
 /* === Unclamp User Bios (by myself) === */
-.descriptionClamp_f5f93a:not(.headerText_faa96b .descriptionClamp_f5f93a) {
+.f5f93a5c4078d63c-descriptionClamp:not(.faa96b2163f6a142-headerText .f5f93a5c4078d63c-descriptionClamp) {
   -webkit-line-clamp: unset;
   max-height: 400px;
 }
-.viewFullBio_f5f93a {
+.f5f93a5c4078d63c-viewFullBio {
   display: none;
 }
 
@@ -53,53 +53,53 @@ span[class*="botTag"]:not([class*="botTagAi"], [class*="botTagCozy"], [class*="b
 }
 
 /* === Revert User Area Panel Spacing (by Obsidianninja11) === */
-.visual-refresh section.panels__5e434 {
+.visual-refresh section._5e434347c823b592-panels {
   left: calc(var(--custom-guild-list-width) + var(--space-xs));
   width: calc(100% - var(--custom-guild-list-width) - var(--space-xs) * 2);
   box-sizing: content-box;
 }
-.visual-refresh .actionButtons_e131a9 button {
+.visual-refresh .e131a99484292a19-actionButtons button {
   padding: 0;
 }
-nav.guilds__5e434 {
+nav._5e434347c823b592-guilds {
   margin-bottom: 0;
 }
-.sidebar__5e434::after {
+._5e434347c823b592-sidebar::after {
   display: none;
 }
 
 /* === Bot Forms (by nexpId) === */
-form > div.focusLock__49fc1 > div.rootWithShadow__49fc1 {
+form > div._49fc18ba07c5025f-focusLock > div._49fc18ba07c5025f-rootWithShadow {
   width: var(--modal-width-medium);
 }
-.rootWithShadow__49fc1 .header__49fc1 {
+._49fc18ba07c5025f-rootWithShadow ._49fc18ba07c5025f-header {
   padding: var(--modal-vertical-padding) var(--modal-horizontal-padding);
   margin-bottom: var(--modal-vertical-padding);
   border-bottom: 1px solid var(--border-normal);
 }
-.header__49fc1 .colorHeaderPrimary_c9946a {
+._49fc18ba07c5025f-header .colorHeaderPrimary_c9946a {
   text-align: center;
   font-weight: var(--font-weight-semibold);
   flex-grow: 1;
 }
-.header__49fc1 .closeButton_e858dd {
+._49fc18ba07c5025f-header .closeButton_e858dd {
   top: unset;
   right: var(--modal-horizontal-padding);
   margin: auto 0;
 }
-.closeButton_e858dd .contents__201d5 {
+.closeButton_e858dd ._201d5e8a3c09670a-contents {
   height: 24px;
 }
-.submissionWarning_e858dd {
+.e858dd8956328358-submissionWarning {
   display: none;
 }
-.formItem__1b11b .eyebrow_b717a1 {
+._1b11bd49fe2d59c9-formItem .b717a15017b82443-eyebrow {
   margin-bottom: 4px;
 }
-.errorMessage_b717a1 {
+.b717a15017b82443-errorMessage {
   color: var(--text-danger);
 }
-.input__0ed4f.error__0ed4f:focus {
+._0ed4fc708cdbac0d-input._0ed4fc708cdbac0d-error:focus {
   color: var(--text-normal);
 }
 
@@ -126,13 +126,13 @@ button[aria-label="Send a gift"],
 button[aria-label="Apps"] {
   display: none;
 }
-.visual-refresh .buttons__74017 {
+.visual-refresh ._740174f3d6a2c8fe-buttons {
   align-items: center;
   gap: 0.1px;
 }
 
 /* === Fullscreen emoji/sticker/gif modal === */
-.layerContainer__59d0d .positionLayer__08434 {
+._59d0d7075b521375-layerContainer ._084343c4f11eaaab-positionLayer {
   position: fixed;
   top: 0;
   left: 0;
@@ -145,7 +145,7 @@ button[aria-label="Apps"] {
   z-index: 100;
 }
 
-.positionLayer__08434 .drawerSizingWrapper__08434 {
+._084343c4f11eaaab-positionLayer ._084343c4f11eaaab-drawerSizingWrapper {
   position: absolute;
   top: 50vh;
   left: 50vw;
@@ -164,14 +164,14 @@ button[aria-label="Apps"] {
   --wh-always-show-suppress-embed-button: 0;
 }
 
-.embedFull__623de {
+._623de82e76ad7f82-embedFull {
   overflow: hidden;
   border-left-width: 0px !important;
   padding-left: 4px;
   border-top: none !important;
   border-bottom: none !important;
   border-right: none !important;
-  .embedSuppressButton__623de {
+  ._623de82e76ad7f82-embedSuppressButton {
     /* fix for it not showing up */
     opacity: calc(1 * var(--wh-always-show-suppress-embed-button)) !important;
     top: var(--wh-border-width);
@@ -208,15 +208,15 @@ button[aria-label="Apps"] {
     z-index: 2;
   }
 
-  .gridContainer__623de {
+  ._623de82e76ad7f82-gridContainer {
     z-index: 3;
   }
 }
 /* Fix for components v2 */
-.withAccentColor__60fa3::before {
+._60fa3b8f3ca9845f-withAccentColor::before {
   display: none;
 }
-.withAccentColor__60fa3 {
+._60fa3b8f3ca9845f-withAccentColor {
   background: color-mix(
     in oklch,
     hsl(from var(--background-surface-high) h s l / 100%),
