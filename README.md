@@ -4,9 +4,13 @@
 > It is a **collection** of different snippets, sometimes with personal customizations.  
 > All credit goes to the original creator(s) which will be mentioned throughout the README & the code itself.
 
-# Contact me through Discord
+# Contact
 
-[![Discord](https://img.shields.io/discord/1196075698301968455?style=social&logo=discord&label=ΛVΛRIΛ)](https://discord.gg/avia)
+[discord]: https://discord.gg/avia
+
+Come hang out in our community for support, **Destiny 2** guides, archives, and more!
+
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)][discord]
 
 # Discord Ui Tweaks
 
