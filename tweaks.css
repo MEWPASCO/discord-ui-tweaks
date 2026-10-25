@@ -1,14 +1,38 @@
 /**
  * @name Discord Ui Tweaks
  * @author Wolfÿ
- * @version 1.0.2
+ * @version 1.0.3
  * @description Just a collection of tweaks I created or which I collected that were made by others (I try to mention them in the repo!) that make Discord a little more enjoyable
  * @invite avia
  * @source https://github.com/MEWPASCO/rainbowglow-avatars
  * @website https://www.avariaxyz.win/
  */
 
+/*
+ * Discord class names carry a build hash (e.g. embedFull_623de) that changes
+ * with updates. Where the class name is specific enough, selectors below match
+ * on the part before the hash. The ones that stay hashed (layout-critical or
+ * generic names like header_ / input_) are listed here, grouped by Discord
+ * module. After an update inspect one element per group and find & replace the
+ * old hash with the new one:
+ *
+ *   29444   containerDefault__
+ *   5e434   panels__, guilds__, sidebar__
+ *   e131a9  actionButtons_
+ *   49fc1   focusLock__, rootWithShadow__, header__
+ *   c9946a  colorHeaderPrimary_
+ *   e858dd  closeButton_, submissionWarning_
+ *   201d5   contents__
+ *   1b11b   formItem__
+ *   b717a1  eyebrow_, errorMessage_
+ *   0ed4f   input__, error__
+ *   74017   buttons__
+ */
+
+
 /* === Collapse Icon Left (by sakgoyal) === */
+/* Kept hashed on purpose: other containerDefault_ classes exist (likely the
+   regular channel rows), so a substring match could hit more than categories. */
 .containerDefault__29444 > div {
   padding-left: 0.5em;
 }
@@ -18,39 +42,45 @@
   flex-direction: row-reverse !important;
 }
 
+
 /* === Remove Profile Reactions (by LuSaffi) === */
-.avatarPopover__2d0ab,
-.statusPopover__2d0ab,
-.activityPopover__2d0ab {
+[class*="avatarPopover_"],
+[class*="statusPopover_"],
+[class*="activityPopover_"] {
   display: none;
 }
 
+
 /* === Round Guild Icons in Folders (by NSPC911) === */
-.icon_f34534.folderPreviewGuildIcon__48112 {
+[class*="folderPreviewGuildIcon_"] {
   border-radius: 50% !important;
 }
 
+
 /* === Unclamp User Bios (by myself) === */
-.descriptionClamp_f5f93a:not(.headerText_faa96b .descriptionClamp_f5f93a) {
+[class*="descriptionClamp_"]:not([class*="headerText_"] [class*="descriptionClamp_"]) {
   -webkit-line-clamp: unset;
   max-height: 400px;
 }
-.viewFullBio_f5f93a {
+[class*="viewFullBio_"] {
   display: none;
 }
+
 
 /* === Revert App-Tags to BOT (by hanyuko + tweak) === */
 span[class*="botTag"]:not([class*="botTagAi"], [class*="botTagCozy"], [class*="botTagRemix"], [class*="botTagOP"]) span[class*="botText"] {
   visibility: hidden;
   position: relative;
+
+  &::after {
+    content: "BOT";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    font-size: 0.625rem;
+  }
 }
-span[class*="botTag"]:not([class*="botTagAi"], [class*="botTagCozy"], [class*="botTagRemix"], [class*="botTagOP"]) span[class*="botText"]::after {
-  content: "BOT";
-  visibility: visible;
-  position: absolute;
-  left: 0;
-  font-size: 0.625rem;
-}
+
 
 /* === Revert User Area Panel Spacing (by Obsidianninja11) === */
 .visual-refresh section.panels__5e434 {
@@ -67,6 +97,7 @@ nav.guilds__5e434 {
 .sidebar__5e434::after {
   display: none;
 }
+
 
 /* === Bot Forms (by nexpId) === */
 form > div.focusLock__49fc1 > div.rootWithShadow__49fc1 {
@@ -103,6 +134,7 @@ form > div.focusLock__49fc1 > div.rootWithShadow__49fc1 {
   color: var(--text-normal);
 }
 
+
 /* === GIF Favorites Cleanup (by MadelineMaid) === */
 [class*="gifFavoriteButton_"] {
   background-color: transparent;
@@ -111,19 +143,25 @@ form > div.focusLock__49fc1 > div.rootWithShadow__49fc1 {
   right: unset;
 }
 
+
 /* === Remove Chatbox Icons (by Sessh) === */
-/* to change, select one of the "button[aria-label="Select emoji"]" areas and change the text that's inside those " " */
-/*
-Select Emoji          - Emoji icon
-Open sticker picker   - Sticker icon
-Open GIF picker       - GIF icon
-Send a gift           - Gift icon
-Apps                  - Controller icon
+/* To change what is hidden, add or remove a line in the list below.
+   The text inside the quotes is the button's aria-label, which only matches
+   with Discord set to English.
+
+   Select emoji          - Emoji icon
+   Open sticker picker   - Sticker icon
+   Open GIF picker       - GIF icon
+   Send a gift           - Gift icon
+   Apps                  - Controller icon
 */
-.visual-refresh button[aria-label="Select emoji"],
-button[aria-label="Open GIF picker"],
-button[aria-label="Send a gift"],
-button[aria-label="Apps"] {
+.visual-refresh form :is(
+  button[aria-label="Select emoji"],
+  /* button[aria-label="Open sticker picker"], */
+  button[aria-label="Open GIF picker"],
+  button[aria-label="Send a gift"],
+  button[aria-label="Apps"]
+) {
   display: none;
 }
 .visual-refresh .buttons__74017 {
@@ -131,8 +169,11 @@ button[aria-label="Apps"] {
   gap: 0.1px;
 }
 
+
 /* === Fullscreen emoji/sticker/gif modal === */
-.layerContainer__59d0d .positionLayer__08434 {
+/* positionLayer_ is a generic class (popouts use it too), so the layer is
+   only targeted when it contains the picker's drawer wrapper. */
+[class*="layerContainer_"] [class*="positionLayer_"]:has([class*="drawerSizingWrapper_"]) {
   position: fixed;
   top: 0;
   left: 0;
@@ -145,7 +186,7 @@ button[aria-label="Apps"] {
   z-index: 100;
 }
 
-.positionLayer__08434 .drawerSizingWrapper__08434 {
+[class*="positionLayer_"] [class*="drawerSizingWrapper_"] {
   position: absolute;
   top: 50vh;
   left: 50vw;
@@ -154,31 +195,41 @@ button[aria-label="Apps"] {
   height: 90vh;
 }
 
+
 /* === Bordered Embeds (by NSPC911) === */
 :root {
+  /* Border width for the embeds */
   --wh-border-width: 4px;
+  /* Background opacity. The higher it is, the more of the border color seeps through */
   --wh-background-opacity: 0%;
+  /* Default background color. Relative color is used for those who use transparent themes */
   --wh-default-background: hsl(
     from var(--background-surface-high) h s l / 100%
   );
+  /* Keep the Suppress Embed button always shown (1), or only while hovering the embed (0) */
   --wh-always-show-suppress-embed-button: 0;
 }
 
-.embedFull__623de {
+[class*="embedFull_"] {
   overflow: hidden;
   border-left-width: 0px !important;
   padding-left: 4px;
   border-top: none !important;
   border-bottom: none !important;
   border-right: none !important;
-  .embedSuppressButton__623de {
-    /* fix for it not showing up */
-    opacity: calc(1 * var(--wh-always-show-suppress-embed-button)) !important;
+
+  & [class*="embedSuppressButton_"] {
+    opacity: var(--wh-always-show-suppress-embed-button);
     top: var(--wh-border-width);
     right: var(--wh-border-width);
     z-index: 10;
     color: white;
   }
+
+  &:hover [class*="embedSuppressButton_"] {
+    opacity: 1;
+  }
+
   &::before {
     top: 0px;
     left: 0;
@@ -208,19 +259,20 @@ button[aria-label="Apps"] {
     z-index: 2;
   }
 
-  .gridContainer__623de {
+  & [class*="gridContainer_"] {
     z-index: 3;
   }
 }
+
 /* Fix for components v2 */
-.withAccentColor__60fa3::before {
+[class*="withAccentColor_"]::before {
   display: none;
 }
-.withAccentColor__60fa3 {
+[class*="withAccentColor_"] {
   background: color-mix(
     in oklch,
     hsl(from var(--background-surface-high) h s l / 100%),
     var(--__accent-color) var(--wh-background-opacity)
   );
-  border: 4px solid var(--__accent-color);
+  border: var(--wh-border-width) solid var(--__accent-color);
 }
