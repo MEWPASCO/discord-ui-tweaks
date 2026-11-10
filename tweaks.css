@@ -1,7 +1,7 @@
 /**
  * @name Discord Ui Tweaks
  * @author Wolfÿ
- * @version 1.0.3
+ * @version 1.0.5
  * @description Just a collection of tweaks I created or which I collected that were made by others (I try to mention them in the repo!) that make Discord a little more enjoyable
  * @invite avia
  * @source https://github.com/MEWPASCO/rainbowglow-avatars
@@ -9,34 +9,22 @@
  */
 
 /*
- * Discord class names carry a build hash (e.g. embedFull_623de) that changes
- * with updates. Where the class name is specific enough, selectors below match
- * on the part before the hash. The ones that stay hashed (layout-critical or
- * generic names like header_ / input_) are listed here, grouped by Discord
- * module. After an update inspect one element per group and find & replace the
- * old hash with the new one:
- *
- *   29444   containerDefault__
- *   5e434   panels__, guilds__, sidebar__
- *   e131a9  actionButtons_
- *   49fc1   focusLock__, rootWithShadow__, header__
- *   c9946a  colorHeaderPrimary_
- *   e858dd  closeButton_, submissionWarning_
- *   201d5   contents__
- *   1b11b   formItem__
- *   b717a1  eyebrow_, errorMessage_
- *   0ed4f   input__, error__
- *   74017   buttons__
+ * Discord class names carry a build hash that changes with updates, and on
+ * 2026-11-10 the format changed too (name__f75fb0 -> name_z_gUBg). Selectors
+ * below match on the name and ignore the hash. Names too generic for that
+ * (header, input, container...) are anchored on a hash-proof parent instead.
+ * "checked" = confirmed against a DOM dump of 2026-11-10.
  */
 
 
 /* === Collapse Icon Left (by sakgoyal) === */
-/* Kept hashed on purpose: other containerDefault_ classes exist (likely the
-   regular channel rows), so a substring match could hit more than categories. */
-.containerDefault__29444 > div {
+/* checked 2026-11-10: li.containerDefault_X > div.wrapper_X > div.mainContent_X
+   (name + arrow icon). containerDefault_ is also the class of the normal channel
+   rows, so categories are picked out by the mainContent_ child they alone have. */
+#channels li:has(> div > [class*="mainContent_"]) > div {
   padding-left: 0.5em;
 }
-.containerDefault__29444 > div > div {
+#channels li:has(> div > [class*="mainContent_"]) > div > div {
   display: flex;
   justify-content: start !important;
   flex-direction: row-reverse !important;
@@ -83,55 +71,67 @@ span[class*="botTag"]:not([class*="botTagAi"], [class*="botTagCozy"], [class*="b
 
 
 /* === Revert User Area Panel Spacing (by Obsidianninja11) === */
-.visual-refresh section.panels__5e434 {
+.visual-refresh section[class*="panels_"] { /* checked */
   left: calc(var(--custom-guild-list-width) + var(--space-xs));
   width: calc(100% - var(--custom-guild-list-width) - var(--space-xs) * 2);
   box-sizing: content-box;
 }
-.visual-refresh .actionButtons_e131a9 button {
+.visual-refresh [class*="actionButtons_"] button { /* unchecked: name from the old client */
   padding: 0;
 }
-nav.guilds__5e434 {
+nav[class*="guilds_"] { /* checked */
   margin-bottom: 0;
 }
-.sidebar__5e434::after {
+div:is([class^="sidebar_"], [class*=" sidebar_"])::after { /* checked: div.sidebar_pog62O */
   display: none;
 }
 
 
 /* === Bot Forms (by nexpId) === */
-form > div.focusLock__49fc1 > div.rootWithShadow__49fc1 {
+/* Unchecked: needs a DOM dump with a bot form open. Everything is scoped to
+   modals that are forms (form > focusLock > rootWithShadow), as the first rule
+   of the original was. The original header / close button rules also applied
+   to every other modal. */
+form > [class*="focusLock_"] > [class*="rootWithShadow_"] {
   width: var(--modal-width-medium);
-}
-.rootWithShadow__49fc1 .header__49fc1 {
-  padding: var(--modal-vertical-padding) var(--modal-horizontal-padding);
-  margin-bottom: var(--modal-vertical-padding);
-  border-bottom: 1px solid var(--border-normal);
-}
-.header__49fc1 .colorHeaderPrimary_c9946a {
-  text-align: center;
-  font-weight: var(--font-weight-semibold);
-  flex-grow: 1;
-}
-.header__49fc1 .closeButton_e858dd {
-  top: unset;
-  right: var(--modal-horizontal-padding);
-  margin: auto 0;
-}
-.closeButton_e858dd .contents__201d5 {
-  height: 24px;
-}
-.submissionWarning_e858dd {
-  display: none;
-}
-.formItem__1b11b .eyebrow_b717a1 {
-  margin-bottom: 4px;
-}
-.errorMessage_b717a1 {
-  color: var(--text-danger);
-}
-.input__0ed4f.error__0ed4f:focus {
-  color: var(--text-normal);
+
+  & :is([class^="header_"], [class*=" header_"]) {
+    padding: var(--modal-vertical-padding) var(--modal-horizontal-padding);
+    margin-bottom: var(--modal-vertical-padding);
+    border-bottom: 1px solid var(--border-normal);
+
+    & [class*="colorHeaderPrimary_"] {
+      text-align: center;
+      font-weight: var(--font-weight-semibold);
+      flex-grow: 1;
+    }
+
+    & [class*="closeButton_"] {
+      top: unset;
+      right: var(--modal-horizontal-padding);
+      margin: auto 0;
+    }
+  }
+
+  & [class*="closeButton_"] :is([class^="contents_"], [class*=" contents_"]) {
+    height: 24px;
+  }
+
+  & [class*="submissionWarning_"] {
+    display: none;
+  }
+
+  & [class*="formItem_"] [class*="eyebrow_"] {
+    margin-bottom: 4px;
+  }
+
+  & [class*="errorMessage_"] {
+    color: var(--text-danger);
+  }
+
+  & :is([class^="input_"], [class*=" input_"]):is([class^="error_"], [class*=" error_"]):focus {
+    color: var(--text-normal);
+  }
 }
 
 
@@ -149,22 +149,26 @@ form > div.focusLock__49fc1 > div.rootWithShadow__49fc1 {
    The text inside the quotes is the button's aria-label, which only matches
    with Discord set to English.
 
-   Select emoji          - Emoji icon
+   Add Emoji             - Emoji icon (was "Select emoji" before the 2026-11-10 update)
    Open sticker picker   - Sticker icon
    Open GIF picker       - GIF icon
    Send a gift           - Gift icon
    Apps                  - Controller icon
-*/
-.visual-refresh form :is(
-  button[aria-label="Select emoji"],
-  /* button[aria-label="Open sticker picker"], */
-  button[aria-label="Open GIF picker"],
-  button[aria-label="Send a gift"],
-  button[aria-label="Apps"]
-) {
+
+   checked 2026-11-10: since the update these are div[role="button"], not
+   <button>, which is why the old rule stopped working. Each one sits in its own
+   wrapper div, so the wrapper is hidden instead and no empty gap is left. */
+.visual-refresh form div:has(> :is(
+  [role="button"][aria-label="Select emoji"],
+  [role="button"][aria-label="Add Emoji"],
+  /* [role="button"][aria-label="Open sticker picker"], */
+  [role="button"][aria-label="Open GIF picker"],
+  [role="button"][aria-label="Send a gift"],
+  [role="button"][aria-label="Apps"]
+)) {
   display: none;
 }
-.visual-refresh .buttons__74017 {
+.visual-refresh [class*="channelTextArea_"] :is([class^="buttons_"], [class*=" buttons_"]) { /* unchecked */
   align-items: center;
   gap: 0.1px;
 }
