@@ -1,3 +1,9 @@
+[![Maintained with AI](https://img.shields.io/badge/Maintained_with-AI-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white)](#ai-disclosure)
+
+> [!IMPORTANT]
+> ### AI disclosure
+> This project is developed and maintained with the help of AI (Claude). I review and test every change myself before it's pushed. If something breaks or looks off, please open an issue. Constructive bug reports are always welcome!
+
 > [!CAUTION]
 > # ⚠️ **Disclaimer**  
 > **Not all the code is written by myself!** \
